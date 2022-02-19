@@ -23,12 +23,13 @@ namespace Portable_Minecraft_Launcher
 	class Program
 	{
 		// Variables
-		public static string Version = "2-22_b";
+		public static string Version = "2-22_1.0_b";
 		
 		
 		// Functions
 		public static void Main(string[] args)
 		{
+			Console.WriteLine("-----------------------------------------------------------");
 			Console.WriteLine("Portable Minecraft Launcher\nWritten By: Andrew Maney, 2022\nVersion: {0}", Version);
 			Console.WriteLine("-----------------------------------------------------------\n");
 			var MainPG = new MainProgram();
@@ -46,7 +47,11 @@ namespace Portable_Minecraft_Launcher
 		public string LauncherURL = "https://launcher.mojang.com/download/Minecraft.exe";
 		public string BackupLauncherURL = "https://drive.google.com/u/1/uc?id=1L6PQpcQCLFv1sVZbbqQwfPrU1gOoAq2Y&export=download&confirm=t";
 		public string LauncherDataZIP = "https://drive.google.com/u/1/uc?id=1bw026YbaEr_uHKIFrj04aTd6UPRqclVf&export=download&confirm=t";
+		public string VersionURL = "https://raw.githubusercontent.com/MEMESCOEP/PortableMinecraftLauncher/main/Version";
+		public string ReleasesURL = "https://github.com/MEMESCOEP/PortableMinecraftLauncher/releases/latest";
 		public int ExitTime = 5000;
+		public string VersionWEB = "";
+		public string Version = "2-22_1.0_b";
 		
 		
 		// Functions
@@ -66,15 +71,53 @@ namespace Portable_Minecraft_Launcher
 			}
 		}
 		
+
+		// Check for updates
+		public void CheckForUpdates(string URL, string ver)
+		{
+			try
+			{
+				Console.WriteLine("[INFO] >> Checking for updates...");
+				using(WebClient client = new WebClient())
+                {
+					ServicePointManager.Expect100Continue = true;
+					ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+                    client.Headers.Add("user-agent", "Anything");
+                    VersionWEB = client.DownloadString(URL).Replace("\n", "");
+                }
+				Console.WriteLine("[INFO] >> Got Version \"" + VersionWEB + "\"");
+				if(VersionWEB != ver)
+				{
+					Console.WriteLine("[INFO] >> A new version is avaliable! Would you like to download it now?");
+					Console.WriteLine("\n1: Yes\n2: No\n");
+					Console.Write("Choose an option >> ");
+					if(Console.ReadLine() == "1")
+					{
+						Process.Start(ReleasesURL);
+					}
+				}
+				else
+				{
+					Console.WriteLine("[INFO] >> No new versions found.\n");
+				}
+				Console.WriteLine("");
+			}
+			catch(Exception EX)
+			{
+				Console.WriteLine("[ERORR] >> Failed to get version information: " + EX.Message);
+			}			
+		}
 		
-		// Make the required directories
+		
+		// Make the required directories (If they don't exist)
 		public void MakeDirs()
 		{
-			Console.Write("[INFO] >> Making Directories... ");
+			Console.WriteLine("[INFO] >> Making Directories... ");
 			try
 			{
 				if(!Directory.Exists("./mcdata"))
 				{				
+					Console.WriteLine("[INFO] >> Creating Directory \"./mcdata\"... ");
 					Directory.CreateDirectory("./mcdata");
 				}
 				else
@@ -84,6 +127,7 @@ namespace Portable_Minecraft_Launcher
 				
 				if(!Directory.Exists("./bin"))
 				{
+					Console.WriteLine("[INFO] >> Creating Directory \"./bin\"... ");
 					Directory.CreateDirectory("./bin");
 				}
 				else
@@ -93,6 +137,7 @@ namespace Portable_Minecraft_Launcher
 				
 				if(!Directory.Exists("./mcdata/.minecraft"))
 				{
+					Console.WriteLine("[INFO] >> Creating Directory \"./mcdata/.minecraft\"... ");
 					Directory.CreateDirectory("./mcdata/.minecraft");
 				}
 				else
@@ -207,6 +252,7 @@ namespace Portable_Minecraft_Launcher
 		// Main Function
 		public void MAIN()
 		{
+			CheckForUpdates(VersionURL, Version);
 			try
 			{
 				if(CheckForInstallations(mc_path) == false)
