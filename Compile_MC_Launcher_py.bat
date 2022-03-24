@@ -1,4 +1,7 @@
 @echo off
+rem This compiles the MC_Launcher.py file to an executable.
+
+
 color 0a
 pyinstaller --onefile ./MC_Launcher.py
 if %ERRORLEVEL% NEQ 0 goto error
