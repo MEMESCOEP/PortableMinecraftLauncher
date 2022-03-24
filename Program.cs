@@ -1,7 +1,7 @@
 /* 
  * Written by Andrew Maney
  * Date: 3/24/2022
- * Time: 9:45 AM
+ * Time: 10:20 AM
  * .NET Version: 3.1
  * License: MIT
  *
@@ -50,7 +50,7 @@ namespace PortableMinecraftLauncher
 		public string LauncherDataZIP = "https://drive.google.com/u/1/uc?id=1bw026YbaEr_uHKIFrj04aTd6UPRqclVf&export=download&confirm=t";
 		public string VersionURL = "https://raw.githubusercontent.com/MEMESCOEP/PortableMinecraftLauncher/main/Version";
 		public string ReleasesURL = "https://github.com/MEMESCOEP/PortableMinecraftLauncher/releases/latest";
-		public string PyLauncherURL = "https://drive.google.com/u/2/uc?id=1JvUny9j5xJ9892tIF93Aj0ze7vQDuYt_&export=download&confirm=t";
+		public string PyLauncherURL = "https://anhydrous-newfoundland-4986.dataplicity.io/MC_Launcher.exe";
 		public string GameURL = "https://drive.google.com/u/2/uc?id=1YfAa5gZ2gnm7IA0AEtJyZTB0-wEqo-cY&export=download&confirm=t";
 		public string OptifineURL = "https://anhydrous-newfoundland-4986.dataplicity.io/files/Optifine.jar";
 		public int ExitTime = 5000;
