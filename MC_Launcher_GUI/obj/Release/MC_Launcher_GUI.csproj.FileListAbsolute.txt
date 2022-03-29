@@ -1,0 +1,46 @@
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Portable Minecrft Launcher.exe.config
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Portable Minecrft Launcher.exe.manifest
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Portable Minecrft Launcher.application
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Portable Minecrft Launcher.exe
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Portable Minecrft Launcher.pdb
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Microsoft.CSharp.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\System.Data.DataSetExtensions.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\System.Data.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\System.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\System.Drawing.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\System.IO.Compression.FileSystem.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\System.Net.Http.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\System.Windows.Forms.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\System.Xml.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\System.Xml.Linq.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\MC_Launcher_GUI.csproj.AssemblyReference.cache
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\MC_Launcher_GUI.Form1.resources
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\MC_Launcher_GUI.Properties.Resources.resources
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\MC_Launcher_GUI.csproj.GenerateResource.cache
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\MC_Launcher_GUI.csproj.CoreCompileInputs.cache
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\Portable Minecrft Launcher.TrustInfo.xml
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\Portable Minecrft Launcher.exe.manifest
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\Portable Minecrft Launcher.application
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\MC_Launcher_GUI.csproj.CopyComplete
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\Portable Minecrft Launcher.exe
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\obj\Release\Portable Minecrft Launcher.pdb
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Newtonsoft.Json.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Newtonsoft.Json.xml
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\runtimes\win-x86\native\WebView2Loader.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\runtimes\win-x64\native\WebView2Loader.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\CmlLib.Core.Auth.Microsoft.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\CmlLib.Core.Auth.Microsoft.UI.WinForm.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\CmlLib.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Microsoft.Web.WebView2.Core.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Microsoft.Web.WebView2.WinForms.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Microsoft.Web.WebView2.Wpf.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\SevenZip.dll
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\ICSharpCode.SharpZipLib.pdb
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\ICSharpCode.SharpZipLib.xml
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Microsoft.Web.WebView2.Core.xml
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Microsoft.Web.WebView2.WinForms.xml
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\Microsoft.Web.WebView2.Wpf.xml
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\SevenZip.xml
+C:\Users\Andrew\source\repos\MC_Launcher_GUI\MC_Launcher_GUI\bin\Release\XboxAuthNet.dll
