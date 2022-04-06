@@ -24,19 +24,20 @@ namespace MC_Launcher_GUI
         public string LauncherURL = "https://launcher.mojang.com/download/Minecraft.exe";
         public string BackupLauncherURL = "https://drive.google.com/u/1/uc?id=1L6PQpcQCLFv1sVZbbqQwfPrU1gOoAq2Y&export=download&confirm=t";
         public string JRE = "https://drive.google.com/u/2/uc?id=16UlNsq_Id7WV_cOfVOzW7Zea1UMfPqan&export=download&confirm=t";
-        public string LauncherDataZIP = "https://anhydrous-newfoundland-4986.dataplicity.io/files/GAME_DATA.zip";
+        public string LauncherDataZIP = "https://siltier-gopher-7179.dataplicity.io/GAME_DATA.zip";
         public string VersionURL = "https://raw.githubusercontent.com/MEMESCOEP/PortableMinecraftLauncher/main/Version";
         public string ReleasesURL = "https://github.com/MEMESCOEP/PortableMinecraftLauncher/releases/latest";
-        public string PyLauncherURL = "https://anhydrous-newfoundland-4986.dataplicity.io/MC_Launcher.exe";
+        public string PyLauncherURL = "https://siltier-gopher-7179.dataplicity.io/MC_Launcher.exe";
         public string GameURL = "https://drive.google.com/u/2/uc?id=1YfAa5gZ2gnm7IA0AEtJyZTB0-wEqo-cY&export=download&confirm=t";
-        public string OptifineURL = "https://anhydrous-newfoundland-4986.dataplicity.io/files/Optifine.jar";
+        public string OptifineURL = "https://siltier-gopher-7179.dataplicity.io/Optifine.jar";
         public int ExitTime = 5000;
         public string VersionWEB = "";
-        public string Version = "3-22_3.11_RC";
+        public string Version = "4-22_1.0";
 		public string AccessToken = "";
 		public bool GameRunning = false;
 		public bool CheckedForUpdates = false;
 		public bool IsLoggedIn = false;
+		public bool OptifineInstalled = false;
 		public RegistryKey GameKey;
 
 
@@ -62,6 +63,10 @@ namespace MC_Launcher_GUI
 						GameKey.SetValue("Name", Username);
 						GameKey.Close();
 					}
+                    if (Directory.Exists(Directory.GetCurrentDirectory() + "/mcdata/.minecraft/shaderpacks"))
+					{
+						OptifineInstalled = true;
+                    }
 				}
 			}
             catch(Exception EX)
@@ -71,24 +76,7 @@ namespace MC_Launcher_GUI
         }
 
 
-		public void ChangeUsername()
-        {
-            try
-			{
-				DialogResult DR = ShowInputDialogBox(ref Username, "Enter a username", "Enter a username", 300, 100);
-				if (DR == DialogResult.OK)
-                {
-					GameKey = Registry.CurrentUser.OpenSubKey("UNAME", true);
-					GameKey.SetValue("Name", Username);
-					GameKey.Close();
-				}				
-			}
-			catch (Exception EX)
-			{
-				MessageBox.Show("ERROR: " + EX.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
+		
         private void button1_Click(object sender, EventArgs e)
         {
 			if (CheckForInstallations(mc_path) == false)
@@ -553,12 +541,21 @@ namespace MC_Launcher_GUI
             {
 				button1.Text = "Start with official launcher";
 				button2.Text = "Start with JRE";
-				button3.Text = "Install OptiFine";
 				button1.Enabled = true;
 				button2.Enabled = true;
-				button3.Enabled = true;
+				if (OptifineInstalled)
+				{
+					button3.Enabled = false;
+					button3.Text = "Optifine is already installed";
+                }
+                else
+                {
+					button3.Text = "Install OptiFine";
+					button3.Enabled = true;
+				}
 			}
-        }
+			
+		}
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -578,45 +575,52 @@ namespace MC_Launcher_GUI
         {
 			if (CheckForInstallations(mc_path) == false)
 			{
-				MicrosoftLoginForm loginForm = new MicrosoftLoginForm();
-				loginForm.LoadingText = "Loading...";
-				loginForm.Icon = ActiveForm.Icon;
-				loginForm.Text = "PMCL - Login";
-				MSession session = loginForm.ShowLoginDialog();
-				if (session != null)
+				try
 				{
-					GameKey = Registry.CurrentUser.OpenSubKey("UNAME", true);
-					try
+					MicrosoftLoginForm loginForm = new MicrosoftLoginForm();
+					loginForm.LoadingText = "Loading...";
+					loginForm.Icon = ActiveForm.Icon;
+					loginForm.Text = "PMCL - Login";
+					MSession session = loginForm.ShowLoginDialog();
+					if (session != null)
 					{
-						GameKey = Registry.CurrentUser.CreateSubKey("UNAME", true);
+						GameKey = Registry.CurrentUser.OpenSubKey("UNAME", true);
+						try
+						{
+							GameKey = Registry.CurrentUser.CreateSubKey("UNAME", true);
+						}
+						catch
+						{
+
+						}
+						AccessToken = session.AccessToken;
+						GameKey.SetValue("AccessToken", AccessToken);
+						GameKey.SetValue("Username", session.Username);
+						GameKey.SetValue("UUID", session.UUID);
+						GameKey.Close();
+
+
+						Thread thread = new Thread(() =>
+						{
+							MakeDirs();
+							DownloadJRE();
+							Download_PY_Launcher();
+							Download_MC();
+							RunGame();
+							GameRunning = false;
+						});
+						thread.Start();
+						GameRunning = true;
 					}
-					catch
+					else
 					{
-
+						MessageBox.Show("Failed to login");
 					}
-					AccessToken = session.AccessToken;
-					GameKey.SetValue("AccessToken", AccessToken);
-					GameKey.SetValue("Username", session.Username);
-					GameKey.SetValue("UUID", session.UUID);
-					GameKey.Close();
+                }
+				catch
+				{
 
-
-					Thread thread = new Thread(() =>
-					{
-						MakeDirs();
-						DownloadJRE();
-						Download_PY_Launcher();
-						Download_MC();
-						RunGame();
-						GameRunning = false;
-					});
-					thread.Start();
-					GameRunning = true;
-				}
-                else
-                {
-					MessageBox.Show("Failed to login");					
-				}
+                }
 			}
 			else
 			{
@@ -689,6 +693,14 @@ namespace MC_Launcher_GUI
 							ConsoleData += ("[ERROR] >> Operation Failed.\nDETAILS: " + EX.Message + "\n");
 						}
 						ConsoleData += ("[DONE]\n\n");
+						if (Directory.Exists(Directory.GetCurrentDirectory() + "/mcdata/.minecraft/shaderpacks"))
+						{
+							OptifineInstalled = true;
+						}
+						else
+						{
+							OptifineInstalled = false;
+						}
 						GameRunning = false;
 					}
 					catch
@@ -702,7 +714,7 @@ namespace MC_Launcher_GUI
 			catch (Exception EX)
 			{
 				ConsoleData += ("[ERROR] >> Operation Failed.\nDETAILS: " + EX.Message + "\n");
-			}
+			}			
 		}
 
         private void button5_Click(object sender, EventArgs e)
@@ -794,7 +806,7 @@ namespace MC_Launcher_GUI
 
 		private void changeUsernameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			ChangeUsername();
+			//ChangeUsername();
 		}
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -808,29 +820,41 @@ namespace MC_Launcher_GUI
 
         private void loginToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-			MicrosoftLoginForm loginForm = new MicrosoftLoginForm();
-			loginForm.LoadingText = "Loading...";
-			loginForm.Icon = ActiveForm.Icon;
-			loginForm.Text = "PMCL - Login";
-			MSession session = loginForm.ShowLoginDialog();
-			if (session != null)
-			{
-				GameKey = Registry.CurrentUser.OpenSubKey("UNAME", true);
-				try
+            try
+            {
+				MicrosoftLoginForm loginForm = new MicrosoftLoginForm();
+				loginForm.LoadingText = "Loading...";
+				loginForm.Icon = ActiveForm.Icon;
+				loginForm.Text = "PMCL - Login";
+				MSession session = loginForm.ShowLoginDialog();
+				if (session != null)
 				{
-					GameKey = Registry.CurrentUser.CreateSubKey("UNAME", true);
-				}
-				catch
-				{
+					GameKey = Registry.CurrentUser.OpenSubKey("UNAME", true);
+					try
+					{
+						GameKey = Registry.CurrentUser.CreateSubKey("UNAME", true);
+					}
+					catch
+					{
 
+					}
+					AccessToken = session.AccessToken;
+					GameKey.SetValue("AccessToken", AccessToken);
+					GameKey.SetValue("Username", session.Username);
+					GameKey.SetValue("UUID", session.UUID);
+					GameKey.Close();
 				}
-				AccessToken = session.AccessToken;
-				GameKey.SetValue("AccessToken", AccessToken);
-				GameKey.SetValue("Username", session.Username);
-				GameKey.SetValue("UUID", session.UUID);
-				GameKey.Close();
 			}
-			
+            catch(Exception EX)
+            {
+				ErrorMessage("An error occurred! Details:\n" + EX.Message, "An error ocurred!", MessageBoxButtons.OK);
+            }					
+        }
+
+		
+		public void ErrorMessage(string ErrorMsg = "An error occurred!", string ErrorTitle = "An error occurred!", MessageBoxButtons mbuttons = MessageBoxButtons.OK)
+        {
+			MessageBox.Show(ErrorMsg, ErrorTitle, mbuttons, MessageBoxIcon.Error);
         }
     }
 }

@@ -139,14 +139,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Portable Minecrft Launcher.exe" size="63464">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Portable Minecrft Launcher.exe" size="63976">
       <assemblyIdentity name="Portable Minecrft Launcher" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ckwJ0Eqze3aGr6oCTzDBjp2873lLVUlbqPrZ24z+4cg=</dsig:DigestValue>
+        <dsig:DigestValue>YsJeQtPE9fzdTT3tDPcgQue/olZu/7R03bU/hBG4GAw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

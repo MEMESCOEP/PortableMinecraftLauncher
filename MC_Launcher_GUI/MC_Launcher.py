@@ -101,7 +101,7 @@ def get_classpath(lib, mcDir):
         cp.append(os.path.join(jarPath, jarFile))
 
     cp.append(os.path.join(mcDir, "versions", lib["id"], f'{lib["id"]}.jar'))
-
+    print("[LAUNCHER / INFO] >> Launch parameters: " + cp)
     return os.pathsep.join(cp)
 
 version = '1.18.2'
@@ -113,7 +113,7 @@ try:
     uuid = response.json()['id']
     print("[LAUNCHER / INFO] >> Got UUID \"{}\" for user \"{}\"".format(uuid, username))
 except:
-    print("[LAUNCHER / ERROR_NON_FATAL] >> Failed to get player UUID!")
+    print("[LAUNCHER / WARNING] >> Failed to get UUID for player \"{}\"! Online play won't work.".format(username))
 accessToken = sys.argv[2]
 mc_PATH = "./mcdata/"
 
@@ -129,7 +129,6 @@ debug(classPath)
 debug(mainClass)
 debug(versionType)
 debug(assetIndex)
-
 subprocess.call([
     './bin/JRE/bin/java.exe',
     f'-Djava.library.path={nativesDir}',
